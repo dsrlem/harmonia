@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,23 +7,22 @@
 </head>
 <body>
     <h1>Editar Livro</h1>
-    <form action="{{ url_for('edit_book', id=book[0]) }}" method="post">
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
         <label for="title">Título:</label>
-        <input type="text" id="title" name="title" value="{{ book[1] }}" required>
-        <br>
+        <input type="text" id="title" name="title" value="{{ book[1] }}" required><br><br>
         <label for="author">Autor:</label>
-        <input type="text" id="author" name="author" value="{{ book[2] }}" required>
-        <br>
-        <label for="genre">Gênero:</label>
-        <input type="text" id="genre" name="genre" value="{{ book[3] }}" required>
-        <br>
+        <input type="text" id="author" name="author" value="{{ book[2] }}" required><br><br>
+        <label for="genre">Genero:</label>
+        <input type="text" id="genre" name="genre" value="{{ book[3] }}" required><br><br>
         <label for="year">Ano:</label>
-        <input type="text" id="year" name="year" value="{{ book[4] }}" required>
-        <br>
-        <label for="edition_id">ID da Edição:</label>
-        <input type="text" id="edition_id" name="edition_id" value="{{ book[5] }}" required>
-        <br>
-        <button type="submit">Salvar</button>
+        <input type="text" id="year" name="year" value="{{ book[4] }}" required><br><br>
+        <label for="edition_id">Edição ID:</label>
+        <input type="text" id="edition_id" name="edition_id" value="{{ book[5] }}" required><br><br>
+        <button type="submit">Atualizar Livro</button>
     </form>
+    <a href="{{ url_for('index') }}">Voltar a Biblioteca</a>
 </body>
 </html>

@@ -1,29 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Livro</title>
+    <title>Adicionar um Livro</title>
 </head>
 <body>
-    <h1>Adicionar Livro</h1>
-    <form action="{{ url_for('add_book') }}" method="post">
+    <h1>Adicionar um Livro</h1>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
         <label for="title">Título:</label>
-        <input type="text" id="title" name="title" required>
-        <br>
+        <input type="text" id="title" name="title" required><br><br>
         <label for="author">Autor:</label>
-        <input type="text" id="author" name="author" required>
-        <br>
-        <label for="genre">Gênero:</label>
-        <input type="text" id="genre" name="genre" required>
-        <br>
+        <input type="text" id="author" name="author" required><br><br>
+        <label for="genre">Genero:</label>
+        <input type="text" id="genre" name="genre" required><br><br>
         <label for="year">Ano:</label>
-        <input type="text" id="year" name="year" required>
-        <br>
-        <label for="edition_id">ID da Edição:</label>
-        <input type="text" id="edition_id" name="edition_id" required>
-        <br>
-        <button type="submit">Adicionar</button>
+        <input type="text" id="year" name="year" required><br><br>
+        <label for="edition_id">Adicionar ID:</label>
+        <input type="text" id="edition_id" name="edition_id" required><br><br>
+        <button type="submit">Adicionar livro</button>
     </form>
+    <a href="{{ url_for('index') }}">Voltar a Biblioteca</a>
 </body>
 </html>

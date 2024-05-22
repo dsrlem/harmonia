@@ -1,17 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Harmonia - Gerenciamento de Biblioteca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        button {
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f4f4f4;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li span {
+            flex: 1;
+            margin-right: 10px;
+        }
+        li .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Biblioteca</h1>
+    <h1>Harmonia - Gerenciamento de Biblioteca</h1>
+    <a href="{{ url_for('add_book') }}"><button>adicionar livro</button></a>
+    <form class="search-bar" method="get" action="{{ url_for('index') }}">
+        <input type="text" name="search" placeholder="Search for books" value="{{ search_query }}">
+        <button type="submit">buscar</button>
+    </form>
     <ul>
         {% for book in books %}
-            <li>{{ book[1] }} por {{ book[2] }} ({{ book[4] }}) - <a href="{{ url_for('edit_book', id=book[0]) }}">Editar</a> | <a href="{{ url_for('delete_book', id=book[0]) }}">Excluir</a></li>
+        <li>
+            <span>ID: {{ book[0] }}</span>
+            <span>Título: {{ book[1] }}</span>
+            <span>Autor: {{ book[2] }}</span>
+            <span>Genero: {{ book[3] }}</span>
+            <span>Ano: {{ book[4] }}</span>
+            <div class="actions">
+                <a href="{{ url_for('edit_book', id=book[0]) }}"><button>Editar</button></a>
+                <a href="{{ url_for('delete_book', id=book[0]) }}"><button>Delete</button></a>
+            </div>
+        </li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('add_book') }}">Adicionar Livro</a>
 </body>
 </html>
