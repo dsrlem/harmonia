@@ -1,18 +1,11 @@
-import sqlite3
+from app import db
 
-conn = sqlite3.connect('library.db')
-cur = conn.cursor()
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100), nullable=False)
+    author = db.Column(db.String(100), nullable=False)
+    genre = db.Column(db.String(100), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    edition_id = db.Column(db.String(100), nullable=False)
 
-cur.execute('''
-CREATE TABLE books (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    author TEXT NOT NULL,
-    genre TEXT NOT NULL,
-    year INTEGER NOT NULL,
-    edition_id INTEGER NOT NULL
-)
-''')
-
-conn.commit()
-conn.close()
+db.create_all()
