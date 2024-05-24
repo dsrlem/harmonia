@@ -5,7 +5,6 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-# Configuração do banco de dados
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///library.db')
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
@@ -23,6 +22,7 @@ class Book(db.Model):
     year = db.Column(db.Integer)
     edition_id = db.Column(db.Integer)
 
+# Definição das rotas
 @app.route('/')
 def index():
     search_query = request.args.get('search')
